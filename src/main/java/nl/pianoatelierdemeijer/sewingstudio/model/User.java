@@ -1,7 +1,10 @@
 package nl.pianoatelierdemeijer.sewingstudio.model;
 
+import org.w3c.dom.stylesheets.LinkStyle;
+
 import javax.persistence.*;
 import java.text.DecimalFormat;
+import java.util.List;
 
 @Entity
 @Table(name = "account")
@@ -25,6 +28,9 @@ public class User
 
     @Column(name = "bank_account")
     private DecimalFormat bankAccount;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
+    private List<Address> addresses;
 
     public long getId() {
         return id;
