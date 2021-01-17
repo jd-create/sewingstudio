@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class AddressServiceImpl implements AddressService {
 
-@Autowired
+    @Autowired
     AddressRepository addressRepository;
 
     @Override

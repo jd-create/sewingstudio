@@ -4,18 +4,23 @@ import nl.pianoatelierdemeijer.sewingstudio.exception.DatabaseErrorException;
 import nl.pianoatelierdemeijer.sewingstudio.exception.RecordNotFoundException;
 import nl.pianoatelierdemeijer.sewingstudio.model.User;
 import nl.pianoatelierdemeijer.sewingstudio.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
-    @Autowired
+
+    final
     UserRepository userRepository;
+
+    public UserServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Override
     public List<User> getAllUsers() {
+
         return userRepository.findAll();
     }
 
@@ -52,6 +57,7 @@ public class UserServiceImpl implements UserService {
         if (userRepository.existsById(id)){
             try {
                 User existingUser = userRepository.findById(id).orElse(null);
+                assert existingUser != null;
                 existingUser.setFirstName(user.getFirstName());
                 existingUser.setLastName(user.getLastName());
                 existingUser.setEmail(user.getEmail());

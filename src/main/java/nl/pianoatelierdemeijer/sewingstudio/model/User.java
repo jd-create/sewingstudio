@@ -3,6 +3,7 @@ package nl.pianoatelierdemeijer.sewingstudio.model;
 import org.w3c.dom.stylesheets.LinkStyle;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.util.List;
 
@@ -29,8 +30,19 @@ public class User
     @Column(name = "bank_account")
     private DecimalFormat bankAccount;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
-    private List<Address> addresses;
+  @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")   //dit moet altijd overeenstemmen met naam van 'user' van ManyToOne bij Address!!!
+   private List<Address> addressList;
+
+    public User()
+    {}
+    public User(String firstName,String lastName, String email, String phoneNumber, DecimalFormat bankAccount)
+    {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.bankAccount = bankAccount;
+    }
 
     public long getId() {
         return id;

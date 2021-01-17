@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.Serializable;
 import java.util.List;
 
 
@@ -17,11 +18,11 @@ import java.util.List;
         private UserService userService;
 
         @GetMapping(value = "/users")
-        public ResponseEntity<Object> getUsers() {
-            List<User> users = userService.getAllUsers();
-            return new ResponseEntity<>(users, HttpStatus.OK);
+        public ResponseEntity<Object> getUsers()
+        {
+            List<User> userList = userService.getAllUsers();
+            return new ResponseEntity<>(userList, HttpStatus.OK);
         }
-
 
         @GetMapping(value = "/users/{id}")
         public ResponseEntity<Object> getUser(@PathVariable("id") long id) {

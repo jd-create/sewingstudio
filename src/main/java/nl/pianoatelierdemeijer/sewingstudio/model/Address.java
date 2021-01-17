@@ -24,6 +24,8 @@ public class Address {
     @ManyToOne
     private User user;
 
+    public Address(){}
+
     public long getAddressId() {
         return addressId;
     }
